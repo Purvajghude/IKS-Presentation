@@ -1,0 +1,130 @@
+/* ============================================
+   IKS Presentation Deck — Material UI styles
+   ============================================ */
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide global scrollbar for a clean presentation look */
+html {
+  scrollbar-width: none;  /* Firefox */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* ---- Typography & Selection ---- */
+::selection {
+  background: rgba(63, 81, 181, 0.2); /* Material Indigo */
+  color: #0F172A;
+}
+
+/* ---- Material Helpers ---- */
+.material-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.material-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+.block-num {
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.15); /* soft indigo glow */
+}
+
+/* ---- Presentation Animations ---- */
+/* Initial hidden state for items to animate in */
+.anim-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active state triggered via JS IntersectionObserver */
+.slide.is-active .anim-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Global Navigation Fade In */
+.group-fade-in {
+  opacity: 1;
+  transition: opacity 1s ease 0.5s;
+}
+
+/* Slide Right Animation (for Slide 1 Progress Bar) */
+@keyframes slideRight {
+  0% { transform: scaleX(0); }
+  50% { transform: scaleX(1); transform-origin: left; }
+  50.1% { transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+.animate-slide-right {
+  animation: slideRight 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ---- Cinematic Image Handling within Cards ---- */
+.bg-img, .img-scale, .img-scale-slow, .img-pan, .img-pan-reverse, .img-rotate-scale {
+  will-change: transform;
+}
+
+/* Image scaling animations for cinematic feel */
+.img-scale {
+  transition: transform 12s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.slide.is-active .img-scale {
+  transform: scale(1.05);
+}
+
+.img-scale-slow {
+  transition: transform 25s linear;
+}
+.slide.is-active .img-scale-slow {
+  transform: scale(1.15);
+}
+
+.img-pan {
+  transform: scale(1.1) translateX(0);
+  transition: transform 18s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.slide.is-active .img-pan {
+  transform: scale(1.1) translateX(-3%);
+}
+
+.img-pan-reverse {
+  transform: scale(1.05) translateX(0);
+  transition: transform 15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.slide.is-active .img-pan-reverse {
+  transform: scale(1.05) translateX(3%);
+}
+
+.img-rotate-scale {
+  transform: scale(1.02) rotate(0deg);
+  transition: transform 20s ease-out;
+}
+.slide.is-active .img-rotate-scale {
+  transform: scale(1.08) rotate(1.5deg);
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+
+/* Prevent scroll bleeding on mobile */
+.slide {
+  overscroll-behavior-y: none;
+}
