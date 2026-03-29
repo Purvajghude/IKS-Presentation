@@ -124,7 +124,4 @@ html::-webkit-scrollbar {
 .delay-400 { transition-delay: 0.4s; }
 .delay-500 { transition-delay: 0.5s; }
 
-/* Prevent scroll bleeding on mobile */
-.slide {
-  overscroll-behavior-y: none;
-}
+
